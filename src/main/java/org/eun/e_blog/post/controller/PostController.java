@@ -26,7 +26,7 @@ public interface PostController {
             @RequestParam Long postID
     );
     
-    @Operation( summary = "게시글 목록 조회", description = "userID를 통한 사용자 게시글 정보 조회")
+    @Operation( summary = "게시글 목록 조회", description = "userID를 통한 사용자 게시글 목록 조회")
     @ApiResponses( value = {
             @ApiResponse(
                     responseCode =  APIResponseMessage.SUCCESS_RESPONSE_CODE,
