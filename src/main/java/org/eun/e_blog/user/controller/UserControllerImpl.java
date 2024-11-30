@@ -2,6 +2,7 @@ package org.eun.e_blog.user.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.eun.e_blog.common.dto.response.SuccessResponse;
+import org.eun.e_blog.user.dto.request.UpdateUserRequest;
 import org.eun.e_blog.user.dto.response.GetUserDetailResponse;
 import org.eun.e_blog.user.service.UserService;
 import org.springframework.http.HttpStatus;
@@ -19,5 +20,17 @@ public class UserControllerImpl implements UserController {
     @Override
     public ResponseEntity<SuccessResponse<GetUserDetailResponse>> getUserDetail(Long userID) {
         return SuccessResponse.of(userService.getUserDetail( userID ) ).asHttp( HttpStatus.OK );
+    }
+
+    @Override
+    public ResponseEntity<SuccessResponse<Void>> deleteUser(Long userID) {
+        userService.deleteUser( userID );
+        return SuccessResponse.ofNoData().asHttp( HttpStatus.OK );
+    }
+
+    @Override
+    public ResponseEntity<SuccessResponse<Void>> updateUser( Long userID, UpdateUserRequest updateUserRequest) {
+        userService.updateUser( userID, updateUserRequest );
+        return SuccessResponse.ofNoData().asHttp( HttpStatus.OK );
     }
 }
