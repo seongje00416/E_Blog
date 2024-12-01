@@ -1,4 +1,4 @@
-package org.eun.e_blog.user.util;
+package org.eun.e_blog.util.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

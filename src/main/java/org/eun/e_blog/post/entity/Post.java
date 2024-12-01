@@ -9,6 +9,8 @@ import lombok.experimental.FieldNameConstants;
 import org.eun.e_blog.util.entity.BaseEntity;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -26,6 +28,10 @@ public class Post extends BaseEntity {
     private PostType postType;
     @Enumerated( EnumType.STRING )
     private PostAccess postAccess;
+    @OneToMany
+    private List<PostFile> fileList;
+    @OneToMany
+    private List<PostFile> imageList;
     private LocalDateTime deletedAt;
 
     @Builder
@@ -37,6 +43,8 @@ public class Post extends BaseEntity {
         this.postType = postType;
         this.postAccess = postAccess;
         this.deletedAt = null;
+        this.fileList = new ArrayList<PostFile>();
+        this.imageList = new ArrayList<PostFile>();
     }
 
     public void delete( LocalDateTime time ) { this.deletedAt = time; }

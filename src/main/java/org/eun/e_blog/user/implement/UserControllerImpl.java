@@ -1,7 +1,8 @@
-package org.eun.e_blog.user.controller;
+package org.eun.e_blog.user.implement;
 
 import lombok.RequiredArgsConstructor;
 import org.eun.e_blog.common.dto.response.SuccessResponse;
+import org.eun.e_blog.user.controller.UserController;
 import org.eun.e_blog.user.dto.request.UpdateUserRequest;
 import org.eun.e_blog.user.dto.response.GetUserDetailResponse;
 import org.eun.e_blog.user.service.UserService;

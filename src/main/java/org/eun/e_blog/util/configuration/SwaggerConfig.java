@@ -1,4 +1,4 @@
-package org.eun.e_blog.user.util;
+package org.eun.e_blog.util.configuration;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
