@@ -8,6 +8,7 @@ import org.eun.e_blog.common.constants.APIResponseMessage;
 import org.eun.e_blog.common.dto.response.PageResponse;
 import org.eun.e_blog.common.dto.response.SuccessResponse;
 import org.eun.e_blog.post.dto.request.CreateReplyRequest;
+import org.eun.e_blog.post.dto.response.GetReplyAboutPostResponse;
 import org.eun.e_blog.post.entity.Reply;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,7 +38,7 @@ public interface ReplyController {
             )
     })
     @GetMapping( "/aboutPost/{postID}")
-    ResponseEntity<SuccessResponse<PageResponse<Reply>>> getReply(
+    ResponseEntity<SuccessResponse<PageResponse<GetReplyAboutPostResponse>>> getReplyByPostID(
         @RequestParam( value = "size", required = false, defaultValue = "20" ) int size,
         @RequestParam( value = "page", required = false, defaultValue = "0" ) int page,
         @RequestParam Long postID
