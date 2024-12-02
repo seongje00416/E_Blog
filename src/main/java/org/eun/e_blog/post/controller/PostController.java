@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.eun.e_blog.common.constants.APIResponseMessage;
+import org.eun.e_blog.common.dto.response.PageResponse;
 import org.eun.e_blog.common.dto.response.SuccessResponse;
 import org.eun.e_blog.post.dto.request.CreatePostRequest;
 import org.eun.e_blog.post.dto.response.GetPostDetailResponse;
@@ -37,8 +38,10 @@ public interface PostController {
             )
     })
     @GetMapping( "/list/{userID}")
-    ResponseEntity<SuccessResponse<GetUserPostListResponse>> getUserPostList(
-            @RequestParam Long userID
+    ResponseEntity<SuccessResponse<PageResponse<GetUserPostListResponse>>> getUserPostList(
+            @RequestParam Long userID,
+            @RequestParam( value = "size", required = false, defaultValue = "10" ) int size,
+            @RequestParam( value = "page", required = false, defaultValue = "0" ) int page
     );
 
     @Operation( summary = "게시글 작성", description = "게시글 작성 API" )
