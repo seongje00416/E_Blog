@@ -20,7 +20,8 @@ public class PostControllerImpl implements PostController {
 
     @Override
     public ResponseEntity<SuccessResponse<GetPostDetailResponse>> getPostDetail(Long postID) {
-        return null;
+        GetPostDetailResponse getPostDetailResponse = postService.getPostDetailResponse(postID);
+        return SuccessResponse.of( getPostDetailResponse ).asHttp( HttpStatus.OK );
     }
 
     @Override

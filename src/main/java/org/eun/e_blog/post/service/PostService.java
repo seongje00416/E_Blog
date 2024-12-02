@@ -2,7 +2,9 @@ package org.eun.e_blog.post.service;
 
 import lombok.RequiredArgsConstructor;
 import org.eun.e_blog.post.dto.request.CreatePostRequest;
+import org.eun.e_blog.post.dto.response.GetPostDetailResponse;
 import org.eun.e_blog.post.entity.Post;
+import org.eun.e_blog.post.exception.PostNotFoundException;
 import org.eun.e_blog.post.repository.PostRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,5 +24,10 @@ public class PostService {
                 .content( createPostRequest.content() )
                 .build();
         postRepository.save( post );
+    }
+
+    public GetPostDetailResponse getPostDetailResponse( Long postID ) {
+        Post post = postRepository.findByIdAndDeletedAtIsNull( postID ).orElseThrow(PostNotFoundException::new);
+        return GetPostDetailResponse.of( post );
     }
 }
