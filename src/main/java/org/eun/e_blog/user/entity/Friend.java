@@ -1,4 +1,4 @@
-package org.eun.e_blog.post.entity;
+package org.eun.e_blog.user.entity;
 
 import jakarta.persistence.*;
 import lombok.Builder;
@@ -12,31 +12,28 @@ import java.time.LocalDateTime;
 
 @Entity
 @Getter
-@NoArgsConstructor(access = lombok.AccessLevel.PROTECTED)
+@Setter
 @FieldNameConstants
-public class PostFile extends BaseEntity {
+@NoArgsConstructor
+public class Friend extends BaseEntity {
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY )
-    @Column( name = "file_id" )
     private Long id;
-    private int fileIndex;
-    private String fileURL;
-    @ManyToOne( fetch = FetchType.LAZY )
-    @JoinColumn( name = "post_id")
-    private Post post;
+    private Long userID;
+    private Long friendID;
     @Enumerated( EnumType.STRING )
-    private FileType fileType;
+    private FriendAssign friendAssign;
     private LocalDateTime deletedAt;
 
     @Builder
-    public PostFile( Long id, int index, String fileURL, Post post, FileType fileType ){
+    public Friend( Long id, Long userID, Long friendID, FriendAssign friendAssign ) {
         this.id = id;
-        this.fileIndex = index;
-        this.fileURL = fileURL;
-        this.post = post;
-        this.fileType = fileType;
+        this.userID = userID;
+        this.friendID = friendID;
+        this.friendAssign = friendAssign;
         this.deletedAt = null;
     }
 
     public void delete( LocalDateTime time ) { this.deletedAt = time; }
+    public void update( FriendAssign friendAssign ) { this.friendAssign = friendAssign; }
 }

@@ -16,11 +16,13 @@ import java.util.List;
 @Getter
 @Setter
 @FieldNameConstants
-@NoArgsConstructor
+@NoArgsConstructor(access = lombok.AccessLevel.PROTECTED)
 public class Post extends BaseEntity {
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY )
+    @Column( name = "post_id" )
     private Long id;
+    @Column( name = "user_id" )
     private Long userID;
     private String title;
     private String content;
@@ -28,10 +30,8 @@ public class Post extends BaseEntity {
     private PostType postType;
     @Enumerated( EnumType.STRING )
     private PostAccess postAccess;
-    @OneToMany
+    @OneToMany( mappedBy = "post", fetch = FetchType.LAZY )
     private List<PostFile> fileList;
-    @OneToMany
-    private List<PostFile> imageList;
     private LocalDateTime deletedAt;
 
     @Builder
@@ -44,7 +44,6 @@ public class Post extends BaseEntity {
         this.postAccess = postAccess;
         this.deletedAt = null;
         this.fileList = new ArrayList<PostFile>();
-        this.imageList = new ArrayList<PostFile>();
     }
 
     public void delete( LocalDateTime time ) { this.deletedAt = time; }
