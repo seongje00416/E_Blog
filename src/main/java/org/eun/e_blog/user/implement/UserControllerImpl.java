@@ -40,4 +40,10 @@ public class UserControllerImpl implements UserController {
         userService.addFriend( userID, friendID );
         return SuccessResponse.ofNoData().asHttp( HttpStatus.OK );
     }
+
+    @Override
+    public ResponseEntity<SuccessResponse<Void>> assignFriend(Long assignID, String assignResult) {
+        userService.assignFriend( assignID, assignResult );
+        return SuccessResponse.ofNoData().asHttp( HttpStatus.OK );
+    }
 }

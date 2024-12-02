@@ -6,6 +6,8 @@ import org.eun.e_blog.user.dto.response.GetUserDetailResponse;
 import org.eun.e_blog.user.entity.Friend;
 import org.eun.e_blog.user.entity.FriendAssign;
 import org.eun.e_blog.user.entity.User;
+import org.eun.e_blog.user.exception.FriendNotFoundException;
+import org.eun.e_blog.user.exception.FriendWrongInputException;
 import org.eun.e_blog.user.exception.UserNotFoundException;
 import org.eun.e_blog.user.repository.FriendRepository;
 import org.eun.e_blog.user.repository.UserRepository;
@@ -48,5 +50,17 @@ public class UserService {
                 .friendAssign( FriendAssign.ASSIGN_WAIT )
                 .build();
         friendRepository.save( friendRequest );
+    }
+
+    @Transactional
+    public void assignFriend( Long assignID, String assignResult ) {
+        Friend friendAssign = friendRepository.findByIdAndDeletedAtIsNull( assignID ).orElseThrow( FriendNotFoundException::new );
+        FriendAssign assign = null;
+
+        if( assignResult.equals( "ASSIGN" ) ) assign = FriendAssign.ASSIGN_ACCESS;
+        else if( assignResult.equals( "DENY" ) ) assign = FriendAssign.ASSIGN_DENY;
+        else throw new FriendWrongInputException();
+
+        friendAssign.update( assign );
     }
 }

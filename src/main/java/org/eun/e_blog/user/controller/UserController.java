@@ -60,4 +60,17 @@ public interface UserController {
             @RequestParam Long userID,
             @RequestParam Long friendID
     );
+
+    @Operation( summary = "친구 신청 응답", description = "받은 친구 신청에 대한 응답" )
+    @ApiResponses( value = {
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "작업을 성공적으로 수행했습니다"
+            )
+    })
+    @PatchMapping( "/friend/{assignID}" )
+    ResponseEntity<SuccessResponse<Void>> assignFriend(
+      @RequestParam Long assignID,
+      @RequestParam String assignResult
+    );
 }
