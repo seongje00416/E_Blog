@@ -36,7 +36,7 @@ public class PostService {
     }
 
     public PageResponse<GetUserPostListResponse> getUserPostListResponse( Long userID, PageRequest pageRequest ) {
-        return PageUtils.toPageResponse( postRepository.findAllByUserIdAndDeletedAtIsNull( userID, pageRequest ) )
+        return PageUtils.toPageResponse( postRepository.findAllByUserIDAndDeletedAtIsNull( userID, pageRequest ) )
                 .map(GetUserPostListResponse::of);
     }
 }
