@@ -23,7 +23,7 @@ public class Friend extends BaseEntity {
     private Long friendID;
     @Enumerated( EnumType.STRING )
     private FriendAssign friendAssign;
-    private LocalDateTime deleted_at;
+    private LocalDateTime deletedAt;
 
     @Builder
     public Friend( Long id, Long userID, Long friendID, FriendAssign friendAssign ) {
@@ -31,9 +31,9 @@ public class Friend extends BaseEntity {
         this.userID = userID;
         this.friendID = friendID;
         this.friendAssign = friendAssign;
-        this.deleted_at = null;
+        this.deletedAt = null;
     }
 
-    public void delete( LocalDateTime time ) { this.deleted_at = time; }
+    public void delete( LocalDateTime time ) { this.deletedAt = time; }
     public void update( FriendAssign friendAssign ) { this.friendAssign = friendAssign; }
 }
