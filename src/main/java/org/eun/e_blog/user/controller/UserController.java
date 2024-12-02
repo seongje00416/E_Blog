@@ -47,4 +47,17 @@ public interface UserController {
             @RequestParam Long userID,
             @RequestBody UpdateUserRequest updateUserRequest
     );
+
+    @Operation( summary = "친구 신청", description = "유저 사이의 친구 등록" )
+    @ApiResponses( value = {
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "작업을 성공적으로 수행했습니다"
+            )
+    })
+    @PostMapping( "/friend" )
+    ResponseEntity<SuccessResponse<Void>> addFriend(
+            @RequestParam Long userID,
+            @RequestParam Long friendID
+    );
 }

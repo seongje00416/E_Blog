@@ -1,9 +1,6 @@
 package org.eun.e_blog.post.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,28 +12,31 @@ import java.time.LocalDateTime;
 
 @Entity
 @Getter
-@Setter
-@NoArgsConstructor
+@NoArgsConstructor(access = lombok.AccessLevel.PROTECTED)
 @FieldNameConstants
 public class PostFile extends BaseEntity {
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY )
+    @Column( name = "file_id" )
     private Long id;
-    private int index;
+    private int fileIndex;
     private String fileURL;
-    private Long postID;
+    @ManyToOne( fetch = FetchType.LAZY )
+    @JoinColumn( name = "post_id")
+    private Post post;
+    @Enumerated( EnumType.STRING )
     private FileType fileType;
-    private LocalDateTime deleted_at;
+    private LocalDateTime deletedAt;
 
     @Builder
-    public PostFile( Long id, int index, String fileURL, Long postID, FileType fileType ){
+    public PostFile( Long id, int index, String fileURL, Post post, FileType fileType ){
         this.id = id;
-        this.index = index;
+        this.fileIndex = index;
         this.fileURL = fileURL;
-        this.postID = postID;
+        this.post = post;
         this.fileType = fileType;
-        this.deleted_at = null;
+        this.deletedAt = null;
     }
 
-    public void delete( LocalDateTime time ) { this.deleted_at = time; }
+    public void delete( LocalDateTime time ) { this.deletedAt = time; }
 }
