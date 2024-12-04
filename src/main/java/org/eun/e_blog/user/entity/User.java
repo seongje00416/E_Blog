@@ -34,8 +34,10 @@ public class User extends BaseEntity {
         this.deletedAt = null;
     }
 
-    public void update( String userName ){
-        this.userName = userName;
+    public void update( String name, String nickName, LocalDate birthday ) {
+        this.userName = name;
+        this.nickName = nickName;
+        this.birthday = birthday;
     }
 
     public void delete( LocalDateTime time ){

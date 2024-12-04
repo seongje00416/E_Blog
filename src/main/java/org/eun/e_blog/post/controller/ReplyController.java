@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Tag( name = "Reply API", description = "댓글 관련 API")
 public interface ReplyController {
-    @Operation( summary = "Create Reply API", description = "댓글 작성 API" )
+    @Operation( summary = "댓글 작성 API", description = "댓글 작성 API" )
     @ApiResponses( value = {
             @ApiResponse(
                     responseCode = APIResponseMessage.SUCCESS_RESPONSE_CODE,
@@ -30,7 +30,7 @@ public interface ReplyController {
       @RequestBody CreateReplyRequest createReplyRequest
     );
 
-    @Operation( summary = "Get Reply about Post API", description = "해당 포스트에 달린 댓글 목록 조회 API" )
+    @Operation( summary = "포스트에 달린 댓글 조회 API", description = "해당 포스트에 달린 댓글 목록 조회 API" )
     @ApiResponses( value = {
             @ApiResponse(
                     responseCode = APIResponseMessage.SUCCESS_RESPONSE_CODE,

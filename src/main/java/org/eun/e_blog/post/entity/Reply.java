@@ -24,7 +24,7 @@ public class Reply extends BaseEntity {
     private Long userID;
     private Long postID;
     private String comment;
-    private LocalDateTime deleted_at;
+    private LocalDateTime deletedAt;
 
     @Builder
     public Reply( Long id, Long userID, Long postID, String comment ){
@@ -32,8 +32,8 @@ public class Reply extends BaseEntity {
         this.userID = userID;
         this.postID = postID;
         this.comment = comment;
-        this.deleted_at = null;
+        this.deletedAt = null;
     }
 
-    public void delete( LocalDateTime time ) { this.deleted_at = time; }
+    public void delete( LocalDateTime time ) { this.deletedAt = time; }
 }

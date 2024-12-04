@@ -37,7 +37,7 @@ public class UserService {
     @Transactional
     public void updateUser(Long userID, UpdateUserRequest updateUserRequest ){
         User user = userRepository.findByIdAndDeletedAtIsNull( userID ).orElseThrow( UserNotFoundException::new );
-        user.update(updateUserRequest.userName() );
+        user.update(updateUserRequest.userName(), updateUserRequest.nickName(), updateUserRequest.birthday());
     }
 
     @Transactional
