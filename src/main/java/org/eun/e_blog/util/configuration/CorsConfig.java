@@ -16,7 +16,8 @@ public class CorsConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(List.of("*"));
-        // 프론트엔드 주소 List.of("http://localhost:5173","ec2-52-79-52-146.ap-northeast-2.compute.amazonaws.com")
+        // configuration.setAllowedOrigins(Arrays.asList("http://localhost:5173", "http://localhost:5173/*",
+        //			"http://퍼블릭IP주소:5173", "http://퍼블릭IP주소:5173/*"));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "PATCH"));
         configuration.setAllowedHeaders(List.of("*"));
         configuration.setAllowCredentials(false);
