@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.eun.e_blog.user.dto.request.CreateUserAccountRequest;
 import org.eun.e_blog.user.entity.Account;
 import org.eun.e_blog.user.entity.User;
+import org.eun.e_blog.user.exception.UserNotFoundException;
 import org.eun.e_blog.user.repository.AccountRepository;
 import org.eun.e_blog.user.repository.UserRepository;
 import org.springframework.stereotype.Service;
@@ -35,5 +36,10 @@ public class AccountService {
                 .userID( userID )
                 .build();
         this.accountRepository.save( account );
+    }
+
+    public Long loginRequest( String email, String password ) {
+        Account account = this.accountRepository.findByEmailAndPasswordAndDeletedAtIsNull( email, password ).orElseThrow( UserNotFoundException::new );
+        return account.getUserID();
     }
 }

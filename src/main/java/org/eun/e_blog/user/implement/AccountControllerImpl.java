@@ -21,4 +21,10 @@ public class AccountControllerImpl implements AccountController {
         this.accountService.createUserAccount(createUserAccountRequest);
         return SuccessResponse.ofNoData().asHttp(HttpStatus.OK );
     }
+
+    @Override
+    public ResponseEntity<SuccessResponse<Long>> login(String email, String password) {
+        Long userID = this.accountService.loginRequest( email, password );
+        return SuccessResponse.of( userID ).asHttp(HttpStatus.OK );
+    }
 }

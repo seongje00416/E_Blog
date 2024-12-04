@@ -25,7 +25,7 @@ public class Account extends BaseEntity {
     private String email;
     private String password;
     private Long userID;
-    private LocalDateTime deleted_at;
+    private LocalDateTime deletedAt;
 
     @Builder
     public Account( Long id, String email, String password, Long userID ){
@@ -33,8 +33,8 @@ public class Account extends BaseEntity {
         this.email = email;
         this.password = password;
         this.userID = userID;
-        deleted_at = null;
+        this.deletedAt = null;
     }
 
-    public void delete( LocalDateTime time ) { this.deleted_at = time; }
+    public void delete( LocalDateTime time ) { this.deletedAt = time; }
 }
