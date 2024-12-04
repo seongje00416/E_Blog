@@ -5,6 +5,7 @@ import lombok.*;
 import lombok.experimental.FieldNameConstants;
 import org.eun.e_blog.util.entity.BaseEntity;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -17,12 +18,19 @@ public class User extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String userName;
+    private String nickName;
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
+    private LocalDate birthday;
     private LocalDateTime deletedAt;
 
     @Builder
-    public User( Long id, String userName ){
+    public User( Long id, String userName, String nickName, Gender gender, LocalDate birthday ) {
         this.id = id;
         this.userName = userName;
+        this.nickName = nickName;
+        this.gender = gender;
+        this.birthday = birthday;
         this.deletedAt = null;
     }
 
